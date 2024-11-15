@@ -1,8 +1,10 @@
+import { db } from "./firebaseConnection";
+
 
 function App() {
   return (
     <div >
-    <h1>  React e Firebase</h1>
+    <h1>  React e Firebase..</h1>
     </div>
   );
 }
