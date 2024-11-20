@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { db } from "./firebaseConnection";
 import "./app.css";
-import { doc, setDoc} from 'firebase/firestore'
+import { doc, setDoc, collection, addDoc, getDoc} from 'firebase/firestore'
 
 function App() {
 
@@ -10,9 +10,39 @@ const [autor, setAutor] = useState('');
 
 
  async function handleAdd(){
-  await setDoc(doc(db, 'posts', '12345'), {
+ // await setDoc(doc(db, 'posts', '12345'), {
+    //titulo: titulo,
+    //autor: autor,
+ // })
+//  .then(() => {
+//console.log("DADOS REGISTRADOS NO BANCO")
+ // })
+ // .catch((error)=>{
+   // console.log('GEROU ERRO' + error)
+  //})
+
+  await addDoc(collection(db, 'posts'),{
     titulo: titulo,
-    autor: autor,
+    autor: autor
+  })
+.then(() => {
+console.log('CADASTRADO COM SUCESSO!')
+setAutor('');
+setTitulo('')
+})
+.catch((error) => {
+  console.log('ERRO' + error)
+})
+
+}
+
+async function buscarPost() {
+  const postRef = doc(db, 'posts', '12345')
+
+  await getDoc(postRef)
+  .then((snapshot) => {
+    setAutor(snapshot.data().autor)
+    setTitulo(snapshot.data().titulo)
   })
 }
 
@@ -38,6 +68,7 @@ const [autor, setAutor] = useState('');
       />
 
       <button onClick={handleAdd}>Cadastrar</button>
+<button onClick={buscarPost}>Buscar post</button>
 
     </div>
     </div>
