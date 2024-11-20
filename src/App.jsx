@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { db } from "./firebaseConnection";
 import "./app.css";
-
+import { doc, setDoc} from 'firebase/firestore'
 
 function App() {
 
@@ -9,8 +9,11 @@ const [titulo, setTitulo] = useState('');
 const [autor, setAutor] = useState('');
 
 
-function handleAdd(){
-  alert('TESTE')
+ async function handleAdd(){
+  await setDoc(doc(db, 'posts', '12345'), {
+    titulo: titulo,
+    autor: autor,
+  })
 }
 
   return (
