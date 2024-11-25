@@ -62,6 +62,9 @@ snapshot.forEach((doc) =>{
   })
 })
 
+setPosts(lista);
+
+
  })
  .catch((error) => {
   console.log('DEU ALGUM ERRO AO BUSCAR')
@@ -92,6 +95,17 @@ snapshot.forEach((doc) =>{
       <button onClick={handleAdd}>Cadastrar</button>
 <button onClick={buscarPost}>Buscar post</button>
 
+<ul>
+  {posts.map( (post) =>{
+    return(
+      <li key={post.id}>
+        <span>Titulo: {post.titulo}</span>
+        <span>Autor:{post.autor}</span>
+
+      </li>
+    )
+  })}
+</ul>
     </div>
     </div>
   );
