@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { db } from "./firebaseConnection";
 import "./app.css";
-import { doc, setDoc, collection, addDoc, getDoc} from 'firebase/firestore'
+import { doc, setDoc, collection, addDoc, getDoc, getDocs} from 'firebase/firestore'
 
 function App() {
 
 const [titulo, setTitulo] = useState('');
 const [autor, setAutor] = useState('');
 
+const [posts, setPosts] = useState([]);
 
  async function handleAdd(){
  // await setDoc(doc(db, 'posts', '12345'), {
@@ -37,13 +38,34 @@ setTitulo('')
 }
 
 async function buscarPost() {
-  const postRef = doc(db, 'posts', '12345')
+ //const postRef = doc(db, 'posts', '12345')
 
-  await getDoc(postRef)
-  .then((snapshot) => {
-    setAutor(snapshot.data().autor)
-    setTitulo(snapshot.data().titulo)
+ // await getDoc(postRef)
+ // .then((snapshot) => {
+ //   setAutor(snapshot.data().autor)
+ //   setTitulo(snapshot.data().titulo)
+ // })
+ // .catch(()=>{
+ //   console.log('ERRO AO BUSCAR')
+ // })
+
+ const postRef = collection(db, 'posts')
+ await getDocs(postRef)
+ .then((snapshot) => {
+let lista = [];
+
+snapshot.forEach((doc) =>{
+  lista.push({
+    id: doc.id,
+    titulo: doc.data().titulo,
+    autor: doc.data().autor,
   })
+})
+
+ })
+ .catch((error) => {
+  console.log('DEU ALGUM ERRO AO BUSCAR')
+ })
 }
 
   return (
