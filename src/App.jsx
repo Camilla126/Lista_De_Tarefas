@@ -99,8 +99,8 @@ setPosts(lista);
   {posts.map( (post) =>{
     return(
       <li key={post.id}>
-        <span>Titulo: {post.titulo}</span>
-        <span>Autor:{post.autor}</span>
+        <span>Titulo: {post.titulo}</span> <br />
+        <span>Autor: {post.autor}</span> <br /> <br />
 
       </li>
     )
