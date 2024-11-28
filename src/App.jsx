@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { db } from "./firebaseConnection";
 import "./app.css";
-import { doc, setDoc, collection, addDoc, getDoc, getDocs} from 'firebase/firestore'
+import { doc, setDoc, collection, addDoc, getDoc, getDocs, updateDoc} from 'firebase/firestore'
 
 function App() {
 
@@ -72,8 +72,23 @@ setPosts(lista);
  })
 }
 
-function editarPost(){
-  alert('deu certo')
+async function editarPost(){
+  const docRef = doc(db, "posts", idPost)
+await updateDoc(docRef, {
+  titulo: titulo,
+  autor: autor
+})
+.then(() =>{
+console.log('POST ATUALIZADO')
+setIdPost('')
+setTitulo('')
+setAutor('')   
+})
+
+.catch(() => {
+  console.log("ERRO AO ATUALIZAR POST")
+})
+
 }
 
   return (
