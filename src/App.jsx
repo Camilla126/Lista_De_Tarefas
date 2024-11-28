@@ -72,6 +72,10 @@ setPosts(lista);
  })
 }
 
+function editarPost(){
+  alert('deu certo')
+}
+
   return (
     <div >
     <h1>  React e Firebase..</h1>
@@ -91,7 +95,7 @@ setPosts(lista);
       placeholder="Digite o titulo"
       value={titulo}
       onChange={(e)=> setTitulo(e.target.value)}
-      />
+      /> <br />
 
       <label>Autor:</label>
       <input 
@@ -104,10 +108,13 @@ setPosts(lista);
       <button onClick={handleAdd}>Cadastrar</button>
 <button onClick={buscarPost}>Buscar post</button>
 
+<button onClick={editarPost}>Atualizar post</button>
+
 <ul>
   {posts.map( (post) =>{
     return(
       <li key={post.id}>
+        <strong>ID: {post.id}</strong> <br />
         <span>Titulo: {post.titulo}</span> <br />
         <span>Autor: {post.autor}</span> <br /> <br />
 
