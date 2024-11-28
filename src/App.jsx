@@ -7,6 +7,7 @@ function App() {
 
 const [titulo, setTitulo] = useState('');
 const [autor, setAutor] = useState('');
+const [idPost, setIdPost] = useState('')
 
 const [posts, setPosts] = useState([]);
 
@@ -76,6 +77,14 @@ setPosts(lista);
     <h1>  React e Firebase..</h1>
 
     <div className="container">
+      <label>ID do Post:</label>
+      <input 
+      placeholder='Digite o ID do post'
+      value={idPost}
+      onChange={ (e) => setIdPost(e.target.value)}
+      />
+
+
       <label>Titulo:</label>
       <textarea 
       type="text"
