@@ -20,6 +20,9 @@ const [titulo, setTitulo] = useState('');
 const [autor, setAutor] = useState('');
 const [idPost, setIdPost] = useState('')
 
+const [email, setEmail] = useState('')
+const [senha, setSenha] = useState('')
+
 const [posts, setPosts] = useState([]);
 
 useEffect(() => {
@@ -135,6 +138,15 @@ setAutor('')
   return (
     <div >
     <h1>  React e Firebase..</h1>
+
+    <div className='container'>
+      <label>Email</label>
+      <input 
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      placeholder='Digite um email'
+      />
+    </div>
 
     <div className="container">
       <label>ID do Post:</label>
