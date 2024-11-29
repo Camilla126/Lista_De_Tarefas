@@ -146,6 +146,13 @@ setAutor('')
       onChange={(e) => setEmail(e.target.value)}
       placeholder='Digite um email'
       />
+
+<label>senha</label>
+      <input 
+      value={senha}
+      onChange={(e) => setSenha(e.target.value)}
+      placeholder='Informe sua senha'
+      />
     </div>
 
     <div className="container">
