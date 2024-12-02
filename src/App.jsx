@@ -16,7 +16,8 @@ import {
 
 import { createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-signOut
+signOut,
+onAuthStateChanged
 
 } from 'firebase/auth'
 
@@ -48,12 +49,34 @@ useEffect(() => {
       })
       
       setPosts(listaPost);
-
-      
     })
   }
   loadPost();
 })
+
+
+useEffect(() => {
+async function checkLogin () {
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      //se tem usuario logado ele entra aqui...
+      console.log(user); 
+      setUser(true)
+      setUserDetail({
+        uid: user.uid,
+        email: user.email
+      })    
+    }else{
+      // nao possui nenhum user logado
+      setUser(false);
+      setUserDetail({})
+    }
+  })
+  
+}
+checkLogin();
+
+}, [])
 
  async function handleAdd(){
  // await setDoc(doc(db, 'posts', '12345'), {
