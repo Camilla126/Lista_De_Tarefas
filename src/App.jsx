@@ -14,7 +14,8 @@ import {
 
 } from 'firebase/firestore'
 
-import { createUserWithEmailAndPassword 
+import { createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
 
 } from 'firebase/auth'
 
@@ -156,6 +157,22 @@ setAutor('')
   })
 }
 
+async function logarUsuario() {
+  await signInWithEmailAndPassword (auth, email, senha)
+  .then((value) => {
+    console.log("USER LOGADO COM SUCESSO");
+console.log(value.user);
+
+    setEmail('')
+    setSenha('')
+    
+  })
+  .catch(() => {
+    console.log("ERRO AO FAZER O LOGIN")
+  })
+  
+}
+
   return (
     <div >
     <h1>  React e Firebase..</h1>
@@ -178,6 +195,8 @@ setAutor('')
       />
 
 <button onClick={novoUsuario}>Cadastrar</button>
+<button onClick={logarUsuario}>Fazer login</button>
+
 
     </div>
 <br /> <br />
