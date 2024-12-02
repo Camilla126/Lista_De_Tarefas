@@ -15,7 +15,8 @@ import {
 } from 'firebase/firestore'
 
 import { createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+signOut
 
 } from 'firebase/auth'
 
@@ -170,6 +171,7 @@ setUserDetail({
   uid: value.user.uid,
   email: value.user.email,
 })
+setUser(true)
 
     setEmail('')
     setSenha('')
@@ -181,9 +183,25 @@ setUserDetail({
   
 }
 
+async function fazerLogout() {
+  await signOut(auth)
+  setUser(false)
+  setUserDetail({})
+}
+
   return (
     <div >
     <h1>  React e Firebase..</h1>
+
+    { user && (
+
+      <div>
+        <strong>Seja bem-vindo(a) (Você está logado!)</strong> <br />
+        <span> ID: {userDetail.uid} - Email: {userDetail.email}</span>
+        <button onClick={fazerLogout}>Sai da conta</button>
+        <br /> <br />
+      </div>
+    )}
 
     <div className='container'>
 <h2>Usuários</h2>
