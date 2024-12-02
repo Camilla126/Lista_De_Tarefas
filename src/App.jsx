@@ -23,10 +23,13 @@ function App() {
 
 const [titulo, setTitulo] = useState('');
 const [autor, setAutor] = useState('');
-const [idPost, setIdPost] = useState('')
+const [idPost, setIdPost] = useState('');
 
-const [email, setEmail] = useState('')
-const [senha, setSenha] = useState('')
+const [email, setEmail] = useState('');
+const [senha, setSenha] = useState('');
+
+const [user, setUser] = useState(false);
+const [userDetail, setUserDetail] = useState({})
 
 const [posts, setPosts] = useState([]);
 
@@ -162,6 +165,11 @@ async function logarUsuario() {
   .then((value) => {
     console.log("USER LOGADO COM SUCESSO");
 console.log(value.user);
+
+setUserDetail({
+  uid: value.user.uid,
+  email: value.user.email,
+})
 
     setEmail('')
     setSenha('')
