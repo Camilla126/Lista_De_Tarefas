@@ -1,6 +1,8 @@
 import { useState } from "react"
 import './home.css'
 
+import { Link } from "react-router-dom"
+
 export default function Home(){
 const [email, setEmail] = useState('')
 const [password, setPassword ] = useState('')
@@ -28,6 +30,11 @@ autoComplete="false"
 
        <button type="submit">Acessar</button>
     </form>
+
+<Link className="button-link" to='/register'>
+Não possui uma conta? Cadastre-se
+</Link>
+
       </div>
     )
   }
