@@ -1,5 +1,5 @@
 import { useState } from "react"
-import '.home.css'
+import './home.css'
 
 export default function Home(){
 const [email, setEmail] = useState('')
@@ -10,7 +10,7 @@ const [password, setPassword ] = useState('')
         <h1>Lista de tarefas</h1>
         <span>Gerencie sua agenda de forma fácil.</span>
     
-    <form>
+    <form className="form">
       <input 
       type="text"
       placeholder="Digite seu email..."
