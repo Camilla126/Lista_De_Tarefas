@@ -43,7 +43,7 @@ await createUserWithEmailAndPassword(auth, email, password)
        />
 
 <input 
-autoComplete="false"
+
       type="password"
       placeholder="******"
       value={password}

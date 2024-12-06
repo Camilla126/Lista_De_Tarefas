@@ -48,7 +48,7 @@ navigate('/admin', {replace: true})
        />
 
 <input 
-autoComplete="false"
+
       type="password"
       placeholder="******"
       value={password}
