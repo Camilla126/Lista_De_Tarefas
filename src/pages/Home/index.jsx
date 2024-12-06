@@ -16,8 +16,6 @@ if(email !== '' && password !== ''){
 }else{
     alert('Preencha todos os campos!')
 }
- 
-
 
 
 }
