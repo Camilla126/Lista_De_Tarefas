@@ -21,8 +21,20 @@ const [tarefaInput, setTarefaInput] = useState('')
                 onChange={(e) => setTarefaInput(e.target.value)}
                 />
 
-                <button type='submit'>Registrar tarefa</button>
+                <button className='btn-register' type='submit'>Registrar tarefa</button>
              </form>
+
+<article className='list'>
+    <p>Estudar javascript hoje</p>
+
+    <div>
+        <button>Editar</button>
+        <button className='btn-delete'>Concluir</button>
+    </div>
+</article>
+
+<button className='btn-logout'>Sair</button>
+
         </div>
     )
 }
