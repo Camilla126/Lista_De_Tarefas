@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './admin.css'
+import { auth } from '../../firebaseConnection'
+import { signOut } from 'firebase/auth'
 
 export default function Admin(){
 const [tarefaInput, setTarefaInput] = useState('')
@@ -9,6 +11,11 @@ const [tarefaInput, setTarefaInput] = useState('')
 
         alert('CLICOUUU')
     }
+
+async function handleLogout() {
+    await signOut(auth);
+   
+}
 
     return(
         <div className='admin-container'>
@@ -33,7 +40,7 @@ const [tarefaInput, setTarefaInput] = useState('')
     </div>
 </article>
 
-<button className='btn-logout'>Sair</button>
+<button className='btn-logout' onClick={handleLogout}>Sair</button>
 
         </div>
     )
