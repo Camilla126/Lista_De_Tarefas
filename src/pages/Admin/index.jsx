@@ -4,15 +4,18 @@ import { auth, db } from '../../firebaseConnection'
 import { signOut } from 'firebase/auth'
 
 import {
-    addDoc, collectio
+    addDoc, collectio,
+    collection
 } from 'firebase/firestore'
 
 export default function Admin(){
 const [tarefaInput, setTarefaInput] = useState('')
+const [user, setUser] = useState({})
 
 useEffect (() => {
 async function loadTarefa() {
-    const userDetail = localStorage.getItem()
+    const userDetail = localStorage.getItem('@detailUser')
+    setUser(JSON.parse(userDetail))
 }
 loadTarefa();
 }, [])
@@ -28,7 +31,15 @@ loadTarefa();
 await addDoc(collection(db, "tarefas"), {
     tarefa: tarefaInput,
     created: new Date(),
-    userUid:
+    userUid: user?.uid
+})
+.then(() => {
+console.log("TAREFA REGISTRADA")
+setTarefaInput('')
+
+})
+.catch((error) => {
+console.log("ERRO AO REGISTRAR" + error)
 })
 
 
