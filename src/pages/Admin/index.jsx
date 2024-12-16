@@ -4,8 +4,12 @@ import { auth, db } from '../../firebaseConnection'
 import { signOut } from 'firebase/auth'
 
 import {
-    addDoc, collectio,
-    collection
+    addDoc, 
+    collection,
+    onSnapshot,
+    query,
+    orderBy,
+    where
 } from 'firebase/firestore'
 
 export default function Admin(){
@@ -16,6 +20,15 @@ useEffect (() => {
 async function loadTarefa() {
     const userDetail = localStorage.getItem('@detailUser')
     setUser(JSON.parse(userDetail))
+
+if(userDetail){
+const data = JSON.parse(userDetail);
+
+const tarefaRef = collection(db, "tarefas")
+const q = query(tarefaRef, orderBy("created", "desc"), where("userUid", "==", data?.uid))
+
+}
+
 }
 loadTarefa();
 }, [])
