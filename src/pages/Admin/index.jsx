@@ -15,6 +15,7 @@ import {
 export default function Admin(){
 const [tarefaInput, setTarefaInput] = useState('')
 const [user, setUser] = useState({})
+const [tarefas, setTarefas] = useState([])
 
 useEffect (() => {
 async function loadTarefa() {
@@ -26,7 +27,7 @@ const data = JSON.parse(userDetail);
 
 const tarefaRef = collection(db, "tarefas")
 const q = query(tarefaRef, orderBy("created", "desc"), where("userUid", "==", data?.uid))
-
+const unsub = onSnapshot(q, (snapshot) => )
 }
 
 }
