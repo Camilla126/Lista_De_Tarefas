@@ -17,6 +17,8 @@ import {
 export default function Admin(){
 const [tarefaInput, setTarefaInput] = useState('')
 const [user, setUser] = useState({})
+const [edit, setEdit] = useState({})
+
 const [tarefas, setTarefas] = useState([])
 
 useEffect (() => {
@@ -85,6 +87,11 @@ async function deleteTarefa(id) {
   await deleteDoc(docRef)  
 }
 
+function editTarefa(item){
+    setTarefaInput(item.tarefa)
+    setEdit(item);
+}
+
     return(
         <div className='admin-container'>
             <h1>Minha tarefas</h1>
@@ -104,7 +111,7 @@ async function deleteTarefa(id) {
     <p>{item.tarefa}</p>
 
     <div>
-        <button>Editar</button>
+        <button onClick={ () => editTarefa(item) }>Editar</button>
         <button onClick={ () => deleteTarefa(item.id) } className='btn-delete'>Concluir</button>
     </div>
 </article>
