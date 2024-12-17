@@ -11,7 +11,8 @@ import {
     orderBy,
     where,
     doc,
-    deleteDoc
+    deleteDoc,
+    updateDoc
 } from 'firebase/firestore'
 
 export default function Admin(){
@@ -60,6 +61,11 @@ loadTarefa();
     return;
   }
 
+  if(edit?.id){
+    handleUpdateTarefa();
+    return;
+  }
+
 await addDoc(collection(db, "tarefas"), {
     tarefa: tarefaInput,
     created: new Date(),
@@ -92,6 +98,24 @@ function editTarefa(item){
     setEdit(item);
 }
 
+async function handleUpdateTarefa() {
+const docRef = doc(db, "tarefas", edit?.id)
+await updateDoc(docRef, {
+    tarefa: tarefaInput
+})
+.then(() => {
+    console.log("TAREFA ATUALIZADA")
+    setTarefaInput('')
+    setEdit({})
+})
+.catch(() => {
+    console.log("ERRO AO ATUALIZAR")
+    setTarefaInput('')
+    setEdit({})
+})
+    
+}
+
     return(
         <div className='admin-container'>
             <h1>Minha tarefas</h1>
@@ -104,7 +128,7 @@ function editTarefa(item){
                 />
 
                 {Object.keys(edit).length > 0 ? (
-                    <button className='btn-register' type='submit'>Atualizar tarefa</button>
+                    <button className='btn-register' type='submit' style={{ backgroundColor: "#6add39"}}>Atualizar tarefa</button>
                 ) : (
                     <button className='btn-register' type='submit'>Registrar tarefa</button>
                 )}
