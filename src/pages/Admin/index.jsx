@@ -9,7 +9,9 @@ import {
     onSnapshot,
     query,
     orderBy,
-    where
+    where,
+    doc,
+    deleteDoc
 } from 'firebase/firestore'
 
 export default function Admin(){
@@ -78,6 +80,11 @@ async function handleLogout() {
    
 }
 
+async function deleteTarefa(id) {
+    alert(id)
+    
+}
+
     return(
         <div className='admin-container'>
             <h1>Minha tarefas</h1>
@@ -98,7 +105,7 @@ async function handleLogout() {
 
     <div>
         <button>Editar</button>
-        <button className='btn-delete'>Concluir</button>
+        <button onClick={ () => deleteTarefa(item.id) } className='btn-delete'>Concluir</button>
     </div>
 </article>
 
