@@ -81,8 +81,8 @@ async function handleLogout() {
 }
 
 async function deleteTarefa(id) {
-    alert(id)
-    
+  const docRef = doc(db, "tarefas", id)
+  await deleteDoc(docRef)  
 }
 
     return(
