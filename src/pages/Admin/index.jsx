@@ -103,7 +103,11 @@ function editTarefa(item){
                 onChange={(e) => setTarefaInput(e.target.value)}
                 />
 
-                <button className='btn-register' type='submit'>Registrar tarefa</button>
+                {Object.keys(edit).length > 0 ? (
+                    <button className='btn-register' type='submit'>Atualizar tarefa</button>
+                ) : (
+                    <button className='btn-register' type='submit'>Registrar tarefa</button>
+                )}
              </form>
 
 {tarefas.map((item) => (
