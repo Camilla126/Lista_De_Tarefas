@@ -38,7 +38,7 @@ snapshot.forEach((doc)=> {
         userUid: doc.data().userUid
     })
 })
-console.log(lista)
+
 setTarefas(lista);
 
 })
@@ -92,14 +92,17 @@ async function handleLogout() {
                 <button className='btn-register' type='submit'>Registrar tarefa</button>
              </form>
 
-<article className='list'>
-    <p>Estudar javascript hoje</p>
+{tarefas.map((item) => (
+    <article key={item.id} className='list'>
+    <p>{item.tarefa}</p>
 
     <div>
         <button>Editar</button>
         <button className='btn-delete'>Concluir</button>
     </div>
 </article>
+
+))}
 
 <button className='btn-logout' onClick={handleLogout}>Sair</button>
 
