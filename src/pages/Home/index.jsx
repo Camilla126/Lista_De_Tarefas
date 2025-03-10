@@ -27,7 +27,7 @@ export default function Home() {
           navigate('/admin', { replace: true })
         })
         .catch(() => {
-          toast.error("ERRO AO FAZER LOGIN")
+          toast.error("Erro ao fazer login")
         })
 
     } else {
