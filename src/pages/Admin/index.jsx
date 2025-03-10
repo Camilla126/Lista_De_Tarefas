@@ -105,12 +105,12 @@ export default function Admin() {
             tarefa: tarefaInput
         })
             .then(() => {
-                toast.success("TAREFA ATUALIZADA")
+                toast.success("Tarefa atualizada")
                 setTarefaInput('')
                 setEdit({})
             })
             .catch(() => {
-                toast.error("ERRO AO ATUALIZAR")
+                toast.error("Erro ao atualizar")
                 setTarefaInput('')
                 setEdit({})
             })
